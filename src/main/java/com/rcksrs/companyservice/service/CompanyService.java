@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rcksrs.companyservice.domain.Company;
+import com.rcksrs.companyservice.exception.BusinessException;
+import com.rcksrs.companyservice.exception.ResourceNotFoundException;
 import com.rcksrs.companyservice.repository.CompanyRepository;
 
 import lombok.AllArgsConstructor;
@@ -16,15 +18,15 @@ public class CompanyService {
 	private CompanyRepository companyRepository;
 	
 	public Company findById(String companyId) {
-		return companyRepository.findById(companyId).orElseThrow(() -> new RuntimeException("Error"));
+		return companyRepository.findById(companyId).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
 	public Company findByCnpj(String cnpj) {
-		return companyRepository.findByCnpj(cnpj).orElseThrow(() -> new RuntimeException("Error"));
+		return companyRepository.findByCnpj(cnpj).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
 	public Company findByNameCnpj(String name) {
-		return companyRepository.findByName(name).orElseThrow(() -> new RuntimeException("Error"));
+		return companyRepository.findByName(name).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
 	public Page<Company> findAllByName(String name, Pageable pageable) {
@@ -42,17 +44,17 @@ public class CompanyService {
 	public Company save(Company company) {
 		var canSave = company.getId() == null && companyRepository.findByCnpj(company.getCnpj()).isEmpty();
 		if(canSave) return companyRepository.save(company);
-		throw new RuntimeException("Error");
+		throw new BusinessException("");
 	}
 	
 	public Company update(Company company) {
-		companyRepository.findByIdAndCnpj(company.getId(), company.getCnpj()).orElseThrow(() -> new RuntimeException("Error"));
+		companyRepository.findByIdAndCnpj(company.getId(), company.getCnpj()).orElseThrow(() -> new BusinessException());
 		return companyRepository.save(company);
 	}
 	
 	public void delete(Company company) {
-		var companySaved = companyRepository.findById(company.getId()).orElseThrow(() -> new RuntimeException("Error"));
-		companyRepository.deleteById(companySaved.getId());		
+		var companySaved = companyRepository.findById(company.getId()).orElseThrow(() -> new BusinessException());
+		companyRepository.deleteById(companySaved.getId());
 	}
 	
 
