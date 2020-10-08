@@ -25,20 +25,20 @@ public class CompanyService {
 		return companyRepository.findByCnpj(cnpj).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
-	public Company findByNameCnpj(String name) {
+	public Company findByName(String name) {
 		return companyRepository.findByName(name).orElseThrow(() -> new ResourceNotFoundException());
+	}
+	
+	public Page<Company> findAll(Pageable pageable) {
+		return companyRepository.findAll(pageable);
 	}
 	
 	public Page<Company> findAllByName(String name, Pageable pageable) {
 		return companyRepository.findByNameContainingIgnoreCase(name, pageable);
 	}
 	
-	public Page<Company> findAllByCity(String city, Pageable pageable) {
-		return companyRepository.findByAddressCity(city, pageable);
-	}
-	
 	public Page<Company> findAllByStateAndCity(String state, String city, Pageable pageable) {
-		return companyRepository.findByAddressStateAndCity(state, city, pageable);
+		return companyRepository.findByAddressStateAndAddressCity(state, city, pageable);
 	}
 	
 	public Company save(Company company) {

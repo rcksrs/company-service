@@ -13,7 +13,7 @@ public interface CompanyRepository extends MongoRepository<Company, String> {
 	Optional<Company> findByIdAndCnpj(String id, String cnpj);
 	Optional<Company> findByName(String name);
 	Page<Company> findByNameContainingIgnoreCase(String name, Pageable pageable);
-	Page<Company> findByAddressCity(String city, Pageable pageable);
-	Page<Company> findByAddressStateAndCity(String state, String city, Pageable pageable);
+	Page<Company> findByAddressCountryAndAddressState(String country, String state, Pageable pageable);
+	Page<Company> findByAddressStateAndAddressCity(String state, String city, Pageable pageable);
 
 }
