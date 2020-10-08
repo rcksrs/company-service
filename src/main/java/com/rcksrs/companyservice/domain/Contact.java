@@ -3,9 +3,13 @@ package com.rcksrs.companyservice.domain;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Contact {
 	@NotBlank(message = "Fill in the contact field")
 	private String contact;

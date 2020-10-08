@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: company-service
+  profiles:
+    active: ${ACTIVE_PROFILE} | dev
+    
+server:
+  port: 8081
+  servlet:
+    context-path: /company
+
+---
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      uri: ${MONGODB_DEV_URL}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+---
+spring:
+  profiles: prod
+  data:
+    mongodb:
+      uri: ${MONGODB_URL}
+  

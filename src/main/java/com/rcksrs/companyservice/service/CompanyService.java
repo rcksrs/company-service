@@ -53,7 +53,7 @@ public class CompanyService {
 	}
 	
 	public void delete(Company company) {
-		var companySaved = companyRepository.findById(company.getId()).orElseThrow(() -> new BusinessException());
+		var companySaved = companyRepository.findById(company.getId()).orElseThrow(() -> new ResourceNotFoundException());
 		companyRepository.deleteById(companySaved.getId());
 	}
 	
