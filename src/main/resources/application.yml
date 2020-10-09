@@ -2,7 +2,7 @@ spring:
   application:
     name: company-service
   profiles:
-    active: ${ACTIVE_PROFILE} | dev
+    active: dev
     
 server:
   port: 8081

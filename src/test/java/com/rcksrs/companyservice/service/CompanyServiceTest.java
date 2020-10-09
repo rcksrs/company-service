@@ -134,7 +134,7 @@ class CompanyServiceTest {
 				.cnpj("23647496000195")
 				.build();
 		
-		var companySaved = companyService.save(newCompany);
+		var companySaved = companyService.update(newCompany);
 		assertAll(() -> {
 			assertEquals(newCompany.getId(), companySaved.getId());
 			assertEquals(newCompany.getCnpj(), companySaved.getCnpj());
@@ -188,7 +188,6 @@ class CompanyServiceTest {
 	@Test
 	@DisplayName("Should not update a company when CNPJ changes")
 	void testNotUpdate() {
-		when(companyRepository.save(any(Company.class))).thenReturn(company);
 		when(companyRepository.findByIdAndCnpj(any(String.class), any(String.class))).thenReturn(Optional.empty());
 		
 		var newCompany = Company.builder()
@@ -197,7 +196,7 @@ class CompanyServiceTest {
 				.cnpj("23647496000195")
 				.build();
 		
-		assertThrows(BusinessException.class, () -> companyService.save(newCompany));
+		assertThrows(BusinessException.class, () -> companyService.update(newCompany));
 	}
 
 	@Test
