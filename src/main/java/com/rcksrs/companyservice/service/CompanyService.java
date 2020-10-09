@@ -48,7 +48,7 @@ public class CompanyService {
 	}
 	
 	public Company update(Company company) {
-		companyRepository.findByIdAndCnpj(company.getId(), company.getCnpj()).orElseThrow(() -> new BusinessException());
+		companyRepository.findByIdAndCnpj(company.getId(), company.getCnpj()).orElseThrow(() -> new BusinessException("Company's CNPJ cannot be changed"));
 		return companyRepository.save(company);
 	}
 	

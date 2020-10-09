@@ -1,5 +1,6 @@
 package com.rcksrs.companyservice.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,8 +22,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company {
-	
+public class Company implements Serializable {
+	private static final long serialVersionUID = -2688881209386649177L;
+
 	@Id
 	private String id;
 	

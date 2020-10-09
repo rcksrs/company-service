@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.rcksrs.companyservice.domain.Company;
+import com.rcksrs.companyservice.domain.dto.CompanyDTO;
 import com.rcksrs.companyservice.service.CompanyService;
 
 import lombok.AllArgsConstructor;
@@ -51,7 +52,13 @@ public class CompanyController {
 	public ResponseEntity<Company> findById(@PathVariable String id) {
 		var company = companyService.findById(id);
 		return ResponseEntity.ok(company);
-	}	
+	}
+	
+	@GetMapping("/find/{id}")
+	public ResponseEntity<CompanyDTO> findCompanyById(@PathVariable String id) {
+		var company = companyService.findById(id);
+		return ResponseEntity.ok(CompanyDTO.fromCompany(company));
+	}
 	
 	@GetMapping("/name/{name}")
 	public ResponseEntity<Company> findByName(@PathVariable String name) {
