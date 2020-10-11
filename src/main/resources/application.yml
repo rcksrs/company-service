@@ -8,6 +8,8 @@ server:
   port: 8081
     
 eureka:
+  instance:
+    hostname: ${HOSTNAME}
   client:
     fetch-registry: true
     register-with-eureka: true
