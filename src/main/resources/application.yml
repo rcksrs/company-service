@@ -5,7 +5,7 @@ spring:
     active: ${PROFILE_ACTIVE:dev}
     
 server:
-  port: 8081
+  port: ${PORT:8081}
     
 eureka:
   client:
@@ -13,6 +13,9 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: ${DISCOVERY_SERVER:http://localhost:8761/eureka}
+  instance:
+    hostname: ${HOSTNAME}
+    non-secure-port: 80
 
 ---
 spring:
