@@ -44,7 +44,7 @@ public class CompanyService {
 	public Company save(Company company) {
 		var canSave = company.getId() == null && companyRepository.findByCnpj(company.getCnpj()).isEmpty();
 		if(canSave) return companyRepository.save(company);
-		throw new BusinessException("");
+		throw new BusinessException("Cannot save an existent company");
 	}
 	
 	public Company update(Company company) {

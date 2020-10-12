@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -40,9 +41,11 @@ public class Company implements Serializable {
 	private LocalDate openingDate;
 	
 	@NotNull(message = "Fill in the address field")
+	@Valid
 	private Address address;
 	
 	@NotNull(message = "Fill in at least one contact field")
+	@Valid
 	private List<Contact> contacts;
 
 }
