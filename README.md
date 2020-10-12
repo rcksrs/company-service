@@ -1,5 +1,5 @@
 # Company Service
-📜 Microservice for registration and management of users and complaints
+📜 Microservice for registration and management of companies
 
 ## 🛠 Installation
 
