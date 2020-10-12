@@ -14,7 +14,7 @@ eureka:
     service-url:
       defaultZone: ${DISCOVERY_SERVER:http://localhost:8761/eureka}
   instance:
-    hostname: ${HOSTNAME}
+    hostname: ${HOSTNAME:localhost}
     non-secure-port: 80
 
 ---
